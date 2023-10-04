@@ -1,13 +1,18 @@
 import Image from 'next/image';
 import React, { HTMLAttributes } from 'react'
+import UsedCar, {IUsedCar} from '@/components/UserCard';
+import type { Metadata } from 'next'
 
-interface IUsuario {
+ export interface IUsuario {
   id: number;
   firstName: string;
   lastName: string;
   picture: string;
   role: 'Admin' | 'Client';
 }
+export const metadata: Metadata = {
+  title: 'Renderizar Lista de Objetos',
+  }
 
 const users:IUsuario[] = [
   {
@@ -49,22 +54,14 @@ const users:IUsuario[] = [
 
 const Example1 = () => {
   return (
+    
     <div className='flex flex-col gap-4 items-center'>
       <h1 className='text-2xl font-bold'>Renderizar una lista de objetos</h1>
       {
         users.map(
-          (user, index) => {
+          (user) => {
             return (
-              <div key = {user.id} className='flex flex-row gap-4 border border-gray-300 rounded-lg overflow-hidden w-96'>
-                <div className=' aspect-square w-32'>
-                  <Image width={128} height={128} className=' object-cover w-full h-full' src={user.picture} alt={`User photo of ${user.firstName} ${user.lastName}`} />
-                </div>
-                <div className='flex flex-col justify-center'>
-                  <span><span className='font-bold'>Nombre:</span> {user.firstName}</span>
-                  <span><span className='font-bold'>Apellido:</span> {user.lastName}</span>
-                  <span><span className='font-bold'>Rol:</span> {user.role}</span>
-                </div>
-              </div>
+              <UsedCar user = {user} />
             )
           }
         )

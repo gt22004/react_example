@@ -1,13 +1,27 @@
 'use client';
 import React, { ChangeEvent, useState } from 'react'
+import UsedCar, {IUsedCar} from '@/components/UserCard';
+import { Metadata } from 'next'
+
+const metadata: Metadata = {
+  title: 'Guardar Objetos',
+}
 
 type TRoles = 'Client' | 'Admin';
+
+interface IUser {
+  id: number;
+  firstName: string;
+  lastName: string;
+  role : string;
+}
 
 const Example2 = () => {
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [role, setRole] = useState<TRoles>('Client')
   const [terms, setTerms] = useState(false)
+  const [users, setUsers] = useState<IUser[]>([]);
 
   const handleNameOnChange = (event:ChangeEvent<HTMLInputElement>) => {
     setFirstName(event.currentTarget.value)
@@ -28,12 +42,13 @@ const Example2 = () => {
   }
 
   const handleGuardarOnClick = () => {
-    console.log('--------------')
-    console.log('Nombre:', firstName)
-    console.log('Apellido:', lastName)
-    console.log('Rol:', role)
-    console.log(terms ? 'Acepto los terminos'  : 'No acepto los terminos')
-    console.log('--------------')
+    const newUser: IUser = {
+      id: users.length + 1,
+      firstName,
+      lastName,
+      role
+    };
+    setUsers([...users, newUser]);
   }
 
   return (
@@ -59,6 +74,14 @@ const Example2 = () => {
         <input onChange={handleTermsOnChange} id='terms' type="checkbox" checked={terms}/>
       </div>
       <button onClick={handleGuardarOnClick}>Guardar</button>
+      <h1 className='text-2xl font-bold'>USUARIOS</h1>
+      <ul>
+        {users.map((user) => (
+          <li key={user.id}>
+            Id: {user.id} Nombre: {user.firstName} {user.lastName} Rol: {user.role}
+          </li>
+        ))}
+      </ul>
     </div>
   )
 }

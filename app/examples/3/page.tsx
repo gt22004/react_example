@@ -1,6 +1,11 @@
 'use client'
 import Card, { ICardProperties } from '@/components/Card'
 import React, { ChangeEvent, useState } from 'react'
+import type { Metadata } from 'next'
+
+export const metadata1: Metadata = {
+  title: 'Manipulacion de Objetos',
+  }
 
 interface ICardsWithId extends ICardProperties {
   id: number;
