@@ -10,4 +10,20 @@
   button {
     @apply bg-blue-500 px-2 py-1 rounded-md text-white;
   }
+  .text-h1{
+    @apply text-2xl;
+  }
+  .text-h2{
+    @apply text-xl;
+  }
+  .text-h3{
+    @apply text-lg;
+  }
+  .text-h4{
+    @apply text-base;
+  }
+  .text-h1{
+    @apply text-sm;
+  }
+
 }
