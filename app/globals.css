@@ -25,5 +25,9 @@
   .text-h1{
     @apply text-sm;
   }
-
+}
+@layer components {
+  .boton-eliminar {
+    @apply bg-red-500 text-white font-bold;
+  }
 }
